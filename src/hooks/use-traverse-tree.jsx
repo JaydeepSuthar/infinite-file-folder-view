@@ -19,19 +19,16 @@ const useTraverseTree = () => {
 	};
 
 	const removeNode = (tree, folderId) => {
-		console.log(tree, folderId);
 		if (tree.id === folderId) {
-			tree.items = [];
-
-			return tree;
+			return null;
 		}
 
-		let latestNode = [];
-		latestNode = tree.items.map((itemObj) => {
-			return removeNode(itemObj, folderId);
+		let newTree = [];
+		newTree = tree.items.filter((item) => {
+			if (item.id !== folderId) return item;
 		});
 
-		return { ...tree, items: latestNode };
+		return { ...tree, items: newTree };
 	};
 
 	return { insertNode, removeNode };

@@ -21,13 +21,32 @@ const App = () => {
 		setFileStructure(finalTree);
 	};
 
+	const addFirstFolder = () => {
+		const finalTree = {
+			id: "1",
+			name: "root",
+			isFolder: true,
+			items: [],
+		};
+
+		setFileStructure(finalTree);
+	};
+
 	return (
 		<>
-			<Folder
-				handleInsertNode={handleInsertNode}
-				explorer={fileStructure}
-				handleRemoveNode={handleRemoveNode}
-			/>
+			{fileStructure ? (
+				<Folder
+					handleInsertNode={handleInsertNode}
+					explorer={fileStructure}
+					handleRemoveNode={handleRemoveNode}
+				/>
+			) : (
+				<div>
+					<p>No Folder</p>
+
+					<button onClick={addFirstFolder}>Folder +</button>
+				</div>
+			)}
 		</>
 	);
 };
